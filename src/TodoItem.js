@@ -5,9 +5,9 @@ import React,{Component} from "react";
 			<li className="list-group-item">
 				<div className="row">
 					<div className="col-md-1">
-						<input type="checkBox"/>
+						<input type="checkBox" checked={this.props.todo.completed} onChange={()=>this.props.toggle(this.props.todo.id)}/>
 					</div>
-					<div className="col-md-10">
+					<div className="col-md-10" style={{textDecoration:this.props.todo.completed?"line-through":""}}>
 						{this.props.todo.title}
 					</div>
 					<div className="col-md-1">

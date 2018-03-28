@@ -11,7 +11,7 @@ import React,{Component} from "react";
 						{this.props.todo.title}
 					</div>
 					<div className="col-md-1">
-						<button className="btn btn-danger bnt-xs" style={{paddingTop:0,paddingBottom:0,paddingRight:6,paddingLeft:6}} >X</button>
+						<button className="btn btn-danger bnt-xs" onClick={()=>this.props.Remove(this.props.todo.id)} style={{paddingTop:0,paddingBottom:0,paddingRight:6,paddingLeft:6}} >X</button>
 					</div>
 				</div>
 			</li>

@@ -6,7 +6,7 @@ import TodoItem from './TodoItem'
 export default class TodoApp extends React.Component{
 	constructor(){
 		super();
-		this.state={list:[{id:Date.now(),title:"react",completed:false},{id:Date.now(),title:"vue",completed:true}]};//初始化默认状态
+		this.state={list:[]};//初始化默认状态
 	}
 	ADDTODO=(todo)=>{
 		console.log(todo);
@@ -17,18 +17,25 @@ export default class TodoApp extends React.Component{
 	}
 	toggle=(id)=>{
 		let todos=this.state.list;
-		todos=todos.map(todo=>{
+		todos=todos.map((todo,index)=>{
 			if (todo.id===id) {
 				todo.completed=!todo.completed;
 			}
 			this.setState({todos})
 		})
 	}
+	Remove=(id)=>{
+		let todos=this.state.list;
+		let index=todos.findIndex(todo=>todo.id===id);
+		todos.splice(index,1)
+		this.setState({todos})
+
+	}
 	render(){
 		let main=(
 			<ul className="list-group">
 				{
-						this.state.list.map((todo,index)=><TodoItem todo={todo} toggle={this.toggle} key={index}></TodoItem>)//里面item较复杂时单独
+					this.state.list.map((todo,index)=><TodoItem todo={todo} Remove={this.Remove} toggle={this.toggle} key={index}></TodoItem>)//里面item较复杂时单独
 				}
 			</ul>
 		)

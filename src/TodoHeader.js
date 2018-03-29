@@ -4,7 +4,6 @@ import React,{Component} from "react";
 		 if (event.keyCode===13) {
 			 event.preventDefault();
 		 	let title=event.target.value;
-			console.log(event.target.value);
 			this.props.ADDTODO({title});
 			event.target.value="";
 		 }

@@ -8,13 +8,9 @@ export default class TodoApp extends React.Component{
 		super();
 		this.state={filterType:filterTypes.ALL};//初始化默认状态
 	}
-
-
-
 	changefilterType=(filterType)=>{
 		this.setState({filterType})
 	}
-
 	render(){
 		let todos=this.props.model.todos;
 		let activeTodoCount=todos.reduce((count,todo)=>count+(todo.completed?0:1),0);

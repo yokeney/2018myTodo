@@ -19,4 +19,6 @@ letters.forEach(ShowResults);
 //  value: ab index: 0
 //  value: cd index: 1
 //  value: ef index: 2
+'''
 {`btn ${this.props.Filter==filterTypes.COMPLICED?"btn-success":"btn-danger"}`
+'''

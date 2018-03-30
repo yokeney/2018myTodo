@@ -7,7 +7,6 @@ export default class TodoModal{
 		this.listeners=[];
 
 	}
-
 	//订阅on(type,listener);emit
 	subscribe(listener){
 		this.listeners.push(listener);

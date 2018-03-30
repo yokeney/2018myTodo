@@ -8,42 +8,13 @@ export default class TodoApp extends React.Component{
 		super();
 		this.state={filterType:filterTypes.ALL};//初始化默认状态
 	}
-	//勾选项
-	toggle=(id)=>{
-		let todos=this.state.todo;
-		todos=todos.map((todo,index)=>{
-			if (todo.id===id) {
-				todo.completed=!todo.completed;
-			}
-			this.setState({todos})
-		})
-	}
-	//删除项
-	Remove=(id)=>{
-		let todos=this.state.todo;
-		let index=todos.findIndex(todo=>todo.id===id);//findIndex返回的是索引值
-		todos.splice(index,1)//删除数组的一项
-		//splice
-		this.setState({todos})
-	}
-	toggleAll=(event)=>{
-		let checked=event.target.checked;//event.target.checked获取true and  false
-		let todos=this.state.todo;
-		todos.map((todo,index)=>{
-			return todo.completed=checked;
-		})
-		this.setState({todos})
-	}
+
+
+
 	changefilterType=(filterType)=>{
 		this.setState({filterType})
 	}
-	del=()=>{
-		let todos=this.state.todo;
-		todos=todos.filter((todo)=>!todo.completed);
-		console.log(todos);
-		this.setState({todos})
 
-	}
 	render(){
 		let todos=this.props.model.todos;
 		let activeTodoCount=todos.reduce((count,todo)=>count+(todo.completed?0:1),0);
@@ -61,10 +32,10 @@ export default class TodoApp extends React.Component{
 		let main=(
 				<ul className="list-group">
 				{todos.length>0?
-				<li className="list-group-item"><input type="checkBox" checked={activeTodoCount===0} onChange={this.toggleAll}/>{activeTodoCount===0?"全选":"取消"}</li>
+				<li className="list-group-item"><input type="checkBox" checked={activeTodoCount===0} onChange={this.props.model.toggleAll}/>{activeTodoCount===0?"全选":"取消"}</li>
 				:null}
 					{
-						showTodos.map((todo,index)=><TodoItem todo={todo} Remove={this.Remove} toggle={this.toggle} key={index}></TodoItem>)//里面item较复杂时单独
+						showTodos.map((todo,index)=><TodoItem todo={todo} Remove={this.props.model.Remove} toggle={this.props.model.toggle} key={index}></TodoItem>)//里面item较复杂时单独
 					}
 				</ul>
 		)
@@ -80,7 +51,7 @@ export default class TodoApp extends React.Component{
 								{main}
 							</div>
 							<div className="panel-footer">
-								<TodoFooter activeTodoCount={activeTodoCount}  changefilterType={this.changefilterType} Filter={this.state.filterType} del={this.del}/>
+								<TodoFooter activeTodoCount={activeTodoCount}  changefilterType={this.changefilterType} Filter={this.state.filterType} del={this.props.model.del}/>
 							</div>
 						</div>
 					</div>
